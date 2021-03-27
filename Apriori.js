@@ -8,30 +8,30 @@
 //     'diaper, cheese, detergent',
 //     'cheese, milk, beer'
 // ];
-// var _testDB = [
-//   "coconut, orange, mango",
-//   "apple, peach, mango",
-//   "mango, watermelon, banana, peach",
-//   "orange, mango, watermelon, banana",
-//   "banana, apple, coconut",
-//   "peach, apple, banana, watermelon",
-//   "watermelon, mango",
-//   "coconut, watermelon, orange",
-//   "peach, apple, banana",
-//   "banana, mango",
-//   "orange, coconut, banana, peach",
-//   "apple, banana, peach",
-//   "peach, mango, apple, banana",
-//   "mango, orange, watermelon, banana, coconut",
-// ];
 var _testDB = [
-  "I1, I2, I3",
-  "I2, I3, I4",
-  "I4, I5",
-  "I1, I2, I4",
-  "I1, I2, I3, I5",
-  "I1, I2, I3, I4",
+  "coconut, orange, mango",
+  "apple, peach, mango",
+  "mango, watermelon, banana, peach",
+  "orange, mango, watermelon, banana",
+  "banana, apple, coconut",
+  "peach, apple, banana, watermelon",
+  "watermelon, mango",
+  "coconut, watermelon, orange",
+  "peach, apple, banana",
+  "banana, mango",
+  "orange, coconut, banana, peach",
+  "apple, banana, peach",
+  "peach, mango, apple, banana",
+  "mango, orange, watermelon, banana, coconut",
 ];
+// var _testDB = [
+//   "I1, I2, I3",
+//   "I2, I3, I4",
+//   "I4, I5",
+//   "I1, I2, I4",
+//   "I1, I2, I3, I5",
+//   "I1, I2, I3, I4",
+// ];
 
 var _db = [];
 
@@ -176,5 +176,8 @@ function testObjects() {
 
   // Số itemset con sinh ra từ k-itemset
   //alert(Bit.findSubsets(Itemset.from(["a", "b", "c", "d"]), 0));
-  console.log(Bit.findSubsets(Itemset.from(["a", "b", "c", "d"]), 5));
+  //console.log(Bit.findSubsets(Itemset.from(["a", "b", "c", "d"]), 5));
+
+  // test
+  //subset.forEach((i) => rule.X.push(i));
 }

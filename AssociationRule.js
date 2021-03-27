@@ -8,6 +8,7 @@ class AssociationRule {
     this.Y = new Itemset();
     this.Support = 0.0;
     this.Confidence = 0.0;
+    this.Lift = 0.0;
   }
 
   toString() {
@@ -20,7 +21,9 @@ class AssociationRule {
       "%, " +
       " Confidence: " +
       this.Confidence.toFixed(2) +
-      "%)"
+      "%)" +
+      " Lift: " +
+      this.Lift
     );
   }
 }

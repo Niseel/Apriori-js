@@ -63,6 +63,9 @@ class AprioriMining {
         let x = db.findSupport(itemset);
         let y = db.findSupport(subset);
         let confidence = (x / y) * 100.0;
+        let Consequen = itemset.removeItemset(subset);
+        let PY = db.findSupport(Consequen);
+        let lift = confidence / 100.0 / (PY / 100.0);
 
         if (confidence >= confidenceThreshold) {
           let rule = new AssociationRule();
@@ -70,6 +73,7 @@ class AprioriMining {
           itemset.removeItemset(subset).forEach((i) => rule.Y.push(i));
           rule.Support = db.findSupport(itemset);
           rule.Confidence = confidence;
+          rule.Lift = lift;
 
           if (rule.X.length > 0 && rule.Y.length > 0) {
             allRules.push(rule);
