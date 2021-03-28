@@ -8,22 +8,22 @@
 //     'diaper, cheese, detergent',
 //     'cheese, milk, beer'
 // ];
-var _testDB = [
-  "coconut, orange, mango",
-  "apple, peach, mango",
-  "mango, watermelon, banana, peach",
-  "orange, mango, watermelon, banana",
-  "banana, apple, coconut",
-  "peach, apple, banana, watermelon",
-  "watermelon, mango",
-  "coconut, watermelon, orange",
-  "peach, apple, banana",
-  "banana, mango",
-  "orange, coconut, banana, peach",
-  "apple, banana, peach",
-  "peach, mango, apple, banana",
-  "mango, orange, watermelon, banana, coconut",
-];
+// var _testDB = [
+//   "coconut, orange, mango",
+//   "apple, peach, mango",
+//   "mango, watermelon, banana, peach",
+//   "orange, mango, watermelon, banana",
+//   "banana, apple, coconut",
+//   "peach, apple, banana, watermelon",
+//   "watermelon, mango",
+//   "coconut, watermelon, orange",
+//   "peach, apple, banana",
+//   "banana, mango",
+//   "orange, coconut, banana, peach",
+//   "apple, banana, peach",
+//   "peach, mango, apple, banana",
+//   "mango, orange, watermelon, banana, coconut",
+// ];
 // var _testDB = [
 //   "I1, I2, I3",
 //   "I2, I3, I4",
@@ -32,14 +32,40 @@ var _testDB = [
 //   "I1, I2, I3, I5",
 //   "I1, I2, I3, I4",
 // ];
-
+var dataset;
+var _testDB = [];
 var _db = [];
 
 $(function () {
   SetControlBehaviors();
   $("#ResetDBButton").click();
   $("#ItemsTextBox").focus();
+    var fileInput = document.getElementById("csv"),
+    readFile = function () {
+        var reader = new FileReader();
+        reader.onload = function () {
+            document.getElementById('out').innerHTML = reader.result;
+            dataset = reader.result;
+            console.log(dataset);
+            
+            var database = [];
+            var arr = dataset.split('\n');
+            for (let i=1;i<arr.length;i++) {
+                var curItem = arr[i].split(',');
+                curItem.shift();
+                database.push(curItem.join(','));
+            }
+            database.pop();
+            database.forEach((item) => { _db.push(item) });
+            
+        };
+        // start reading the file. When it is done, calls the onload event defined above.
+        reader.readAsBinaryString(fileInput.files[0]);
+    };
+
+    fileInput.addEventListener('change', readFile);
 });
+
 
 ///////////////////
 // Helper Methods
@@ -94,6 +120,7 @@ function SetControlBehaviors() {
     // là kiểu Itemset từ dữ liệu đầu vào _db
     // lưu ý kí tự tách chuỗi
     let db = new ItemsetCollection();
+    _db = _db.map((item) => item.substring(1, item.length-2));
     for (var i in _db) {
       let items = _db[i].split(", ");
       db.push(Itemset.from(items));
