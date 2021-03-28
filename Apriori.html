@@ -8,7 +8,7 @@
     <script type="text/javascript" src="Bit.js"></script>
     <script type="text/javascript" src="AprioriMining.js"></script>
     <script type="text/javascript" src="Apriori.js"></script>
-
+    <script type="text/javascript" src="FileSaver.min.js"></script>
     <style>
       body {
         font-family: Verdana;
@@ -34,7 +34,6 @@
       }
 
       #AprioriContainer {
-        width: 540px;
         height: 500px;
         border: 1px solid #b0b0b0;
         padding: 12px;
@@ -48,6 +47,14 @@
       #AprioriTable tr td:nth-child(1) {
         width: 120px;
       }
+      .boxsizingBorder {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .main-content {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -58,87 +65,94 @@
       <div id="testresult">
         <div id="out"></div>
       </div>
-      <table id="AprioriTable" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td>Enter Items:</td>
-          <td>
-            <input
-              type="text"
-              id="ItemsTextBox"
-              value="bread, milk, cheese, beer, umbrella, diaper, water, detergent"
-              style="width: 410px"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Transactions:</td>
-          <td>
-            <input
-              type="number"
-              id="TransCountTextBox"
-              value="5"
-              style="width: 80px"
-            />&nbsp;&nbsp;
-            <button id="GenerateDBButton" style="width: 100px">
-              Generate DB</button
-            >&nbsp;&nbsp;
-            <button id="ResetDBButton" style="width: 100px">Reset DB</button
-            >&nbsp;&nbsp;
-          </td>
-        </tr>
-        <tr style="height: 10px">
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <textarea
-              id="DBTextBox"
-              cols="73"
-              style="height: 120px"
-              readonly="readonly"
-            ></textarea>
-          </td>
-        </tr>
-        <tr style="height: 10px">
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            Support Threshold (%):&nbsp;&nbsp;
-            <input
-              type="number"
-              id="SupportThresholdTextBox"
-              value="28.00"
-              style="width: 80px"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            Confidence Threshold (%):&nbsp;&nbsp;
-            <input
-              type="number"
-              id="ConfidenceThresholdTextBox"
-              value="80.00"
-              style="width: 80px"
-            />&nbsp;&nbsp;
-            <button id="AprioriButton" style="width: 100px">Apriori</button>
-          </td>
-        </tr>
-        <tr style="height: 10px">
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <textarea
-              id="ResultTextBox"
-              cols="73"
-              style="height: 180px"
-              readonly="readonly"
-            ></textarea>
-          </td>
-        </tr>
-      </table>
+      <div class="main-content">
+        <table
+          id="AprioriTable"
+          style="width: 100%"
+          cellpadding="0"
+          cellspacing="0"
+          border="0"
+        >
+          <tr style="display: none">
+            <td>Enter Items:</td>
+            <td>
+              <input
+                type="text"
+                id="ItemsTextBox"
+                value="bread, milk, cheese, beer, umbrella, diaper, water, detergent"
+                style="width: 410px"
+              />
+            </td>
+          </tr>
+          <tr style="display: none">
+            <td>Transactions:</td>
+            <td>
+              <input
+                type="number"
+                id="TransCountTextBox"
+                value="5"
+                style="width: 80px"
+              />&nbsp;&nbsp;
+              <button id="GenerateDBButton" style="width: 100px">
+                Generate DB</button
+              >&nbsp;&nbsp;
+              <button id="ResetDBButton" style="width: 100px">Reset DB</button
+              >&nbsp;&nbsp;
+            </td>
+          </tr>
+          <tr style="height: 10px">
+            <td></td>
+          </tr>
+          <tr style="display: none">
+            <td colspan="2">
+              <textarea
+                id="DBTextBox"
+                cols="73"
+                style="height: 120px"
+                readonly="readonly"
+              ></textarea>
+            </td>
+          </tr>
+          <tr style="height: 10px">
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              Support Threshold (%):&nbsp;&nbsp;
+              <input
+                type="number"
+                id="SupportThresholdTextBox"
+                value="28.00"
+                style="width: 80px"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              Confidence Threshold (%):&nbsp;&nbsp;
+              <input
+                type="number"
+                id="ConfidenceThresholdTextBox"
+                value="80.00"
+                style="width: 80px"
+              />&nbsp;&nbsp;
+              <button id="AprioriButton" style="width: 100px">Apriori</button>
+            </td>
+          </tr>
+          <tr style="height: 10px">
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <textarea
+                id="ResultTextBox"
+                style="height: 350px; width: 100%"
+                readonly="readonly"
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </body>
   <script></script>
