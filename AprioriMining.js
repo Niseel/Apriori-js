@@ -60,12 +60,14 @@ class AprioriMining {
 
       for (var j in subsets) {
         let subset = subsets[j];
-        let x = db.findSupport(itemset);
-        let y = db.findSupport(subset);
-        let confidence = (x / y) * 100.0;
-        let Consequen = itemset.removeItemset(subset);
-        let PY = db.findSupport(Consequen);
-        let lift = confidence / 100.0 / (PY / 100.0);
+        let supportXY = db.findSupport(itemset);
+        let supportX = db.findSupport(subset);
+        let confidence = (supportXY / supportX) * 100.0;
+        let consequent  = itemset.removeItemset(subset);
+        let supportY = db.findSupport(consequent);
+        let lift = confidence / 100.0 / (supportY / 100.0);
+        let levarage = (supportXY / 100.0)  - (supportX / 100.0) * (supportY / 100.0);
+        let conviction = (1.0 - supportY) / (1.0 - confidence);
 
         if (confidence >= confidenceThreshold) {
           let rule = new AssociationRule();
@@ -74,6 +76,8 @@ class AprioriMining {
           rule.Support = db.findSupport(itemset);
           rule.Confidence = confidence;
           rule.Lift = lift;
+          rule.Levarage = levarage;
+          rule.Conviction = conviction;
 
           if (rule.X.length > 0 && rule.Y.length > 0) {
             allRules.push(rule);

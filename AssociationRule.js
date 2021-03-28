@@ -9,6 +9,8 @@ class AssociationRule {
     this.Support = 0.0;
     this.Confidence = 0.0;
     this.Lift = 0.0;
+    this.Levarage = 0.0;
+    this.Conviction = 0.0;
   }
 
   toString() {
@@ -23,7 +25,11 @@ class AssociationRule {
       this.Confidence.toFixed(2) +
       "%)" +
       " Lift: " +
-      this.Lift
+      this.Lift +
+      " Levarage: " +
+      this.Levarage + 
+      " Conviction: " +
+      this.Conviction
     );
   }
 }
