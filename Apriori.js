@@ -45,7 +45,7 @@ $(function () {
     readFile = function () {
       var reader = new FileReader();
       reader.onload = function () {
-        document.getElementById("out").innerHTML = reader.result;
+        //document.getElementById("out").innerHTML = reader.result;
         dataset = reader.result;
         console.log(dataset);
 
@@ -146,6 +146,21 @@ function SetControlBehaviors() {
     let allRules = AprioriMining.mine(db, L, confidenceThreshold);
     AddResultLine(allRules.length + " Association Rules");
     AddResultLine(allRules.join("\n"));
+
+    // Tên và nội dung file xuất
+    let fileName = "AssociationRule.txt";
+    let fileContent = L.length + " Large Itemsets (by Apriori): \n";
+    fileContent += L.join("\n");
+    fileContent += "\n\n\n";
+    fileContent += allRules.length + " Association Rules: \n";
+    fileContent += allRules.join("\n");
+
+    // Xuất file để download
+    var blob = new Blob([fileContent], {
+      type: "text/plain;charset=utf-8",
+    });
+    // Hàm lưu của thư viện FileSaver
+    saveAs(blob, fileName);
   });
 }
 
