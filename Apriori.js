@@ -53,6 +53,10 @@ $(function () {
         var arr = dataset.split("\n");
         for (let i = 1; i < arr.length; i++) {
           var curItem = arr[i].split(",");
+
+          // dữ liệu không dùng 3 cột đầu
+          curItem.shift();
+          curItem.shift();
           curItem.shift();
           database.push(curItem.join(","));
         }
